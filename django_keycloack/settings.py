@@ -60,7 +60,7 @@ AUTHENTICATION_BACKENDS = [
 
 
 OAUTH2_PROVIDER = {
-    'RESOURCE_SERVER_INTROSPECTION_URL': 'https://{url}/realms/{realm}/protocol/openid-connect/token/introspect/'.format(
+    'RESOURCE_SERVER_INTROSPECTION_URL': '{url}/realms/{realm}/protocol/openid-connect/token/introspect/'.format(
         url=os.environ.get('KEYCLOAK_URL'),
         realm=os.environ.get('KEYCLOAK_REALM'),
     ),
