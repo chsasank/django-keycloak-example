@@ -1,5 +1,8 @@
 # Django + Keycloack Example
 
+An example django project to integrate with keycloack. This works by using [django-allauth](https://django-allauth.readthedocs.io/). Users from keycloak are mapped to django's user table.
+
+
 How to integrate django with keycloack.
 
 
