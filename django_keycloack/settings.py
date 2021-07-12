@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -69,8 +69,13 @@ AUTHENTICATION_BACKENDS = [
 
 SOCIALACCOUNT_PROVIDERS = {
     'keycloak': {
-        'KEYCLOAK_URL': 'https://accounts.qure.ai/auth',
-        'KEYCLOAK_REALM': 'users'
+        'KEYCLOAK_URL': os.environ.get('KEYCLOAK_URL'),
+        'KEYCLOAK_REALM': os.environ.get('KEYCLOAK_REALM'),
+        'APP': {
+            "client_id": os.environ.get('KEYCLOAK_CLIENT_ID'),
+            "secret": os.environ.get('KEYCLOAK_CLIENT_SECRET'),
+            "key": ""
+        }
     }
 }
 

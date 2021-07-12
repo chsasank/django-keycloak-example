@@ -45,30 +45,21 @@ Copy the client secret
 
 ![](./screenshots/keycloak-client-3.png)
 
-Create admin account
+
+Add the client details:
+
+```
+export KEYCLOAK_URL=<https://key-cloak.url>
+export KEYCLOAK_REALM=<my-realm>
+export KEYCLOAK_CLIENT_ID=<client-id>
+export KEYCLOAK_CLIENT_SECRET=<secret>
+```
+
 
 ```bash
-$ python manage.py createsuperuser
-Username (leave blank to use 'sasank'): admin
-Email address:       
-Password: 
-Password (again): 
-Superuser created successfully.
-
 $ python manage.py runserver
 ```
 
-Open admin portal with the above admin user at http://localhost:8000/admin
-
-![](./screenshots/admin.png)
-
-
-Add the client details in social account of django admin.
-
-![](./screenshots/social-app-admin.png)
-
-![](./screenshots/social-app-add.png)
-
-Log out from admin. Let's try to login to our user. Open http://localhost:8000/polls
+Open http://localhost:8000/polls
 
 ![](./screenshots/django-1.png)
