@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls'
+    'polls',
+    'oauth2_provider'
 ]
 
 MIDDLEWARE = [
@@ -48,7 +49,26 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware'
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'oauth2_provider.backends.OAuth2Backend',
+    # Uncomment following if you want to access the admin
+    'django.contrib.auth.backends.ModelBackend'
+]
+
+
+OAUTH2_PROVIDER = {
+    'RESOURCE_SERVER_INTROSPECTION_URL': 'https://{url}/realms/{realm}/protocol/openid-connect/token/introspect/'.format(
+        url=os.environ.get('KEYCLOAK_URL'),
+        realm=os.environ.get('KEYCLOAK_REALM'),
+    ),
+    'RESOURCE_SERVER_INTROSPECTION_CREDENTIALS': (
+        os.environ.get('KEYCLOAK_CLIENT_ID'),
+        os.environ.get('KEYCLOAK_CLIENT_SECRET')
+    ),
+}
 
 ROOT_URLCONF = 'django_keycloack.urls'
 
