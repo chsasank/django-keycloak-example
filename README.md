@@ -52,7 +52,7 @@ Copy the client secret
 Add the client details:
 
 ```
-export KEYCLOAK_URL=<https://key-cloak.url>
+export KEYCLOAK_URL=<https://key-cloak.url/auth>
 export KEYCLOAK_REALM=<my-realm>
 export KEYCLOAK_CLIENT_ID=<client-id>
 export KEYCLOAK_CLIENT_SECRET=<secret>
