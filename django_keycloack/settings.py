@@ -47,6 +47,10 @@ INSTALLED_APPS = [
 
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.keycloak',
+
+    # django rest framework
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
