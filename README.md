@@ -1,5 +1,14 @@
 # Django + Keycloack Example
 
+Tried multiple packages to integrate django with keycloak.
+
+| Branch Name | Package |
+|---|----|
+| [main](https://github.com/chsasank/django-keycloak-example/tree/main) | https://django-allauth.readthedocs.io/en/latest/installation.html |
+| [mozilla-oidc](https://github.com/chsasank/django-keycloak-example/tree/mozilla-oidc) | https://mozilla-django-oidc.readthedocs.io/en/stable/index.html |
+| [django-oauth](https://github.com/chsasank/django-keycloak-example/tree/django-oauth) | https://django-oauth-toolkit.readthedocs.io/|
+
+
 An example django project to integrate with keycloack. This works by using [django-allauth](https://django-allauth.readthedocs.io/). Users from keycloak are mapped to django's user table.
 
 
