@@ -56,7 +56,7 @@ ROOT_URLCONF = 'django_keycloack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +67,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'django_keycloack.wsgi.application'
@@ -138,3 +142,4 @@ OIDC_OP_TOKEN_ENDPOINT = f'{openid_prefix}/token'
 OIDC_OP_USER_ENDPOINT = f'{openid_prefix}/userinfo'
 OIDC_OP_JWKS_ENDPOINT = f'{openid_prefix}/certs'
 OIDC_OP_LOGOUT_ENDPOINT= f'{openid_prefix}/logout'
+OIDC_RP_SIGN_ALGO = 'RS256'
