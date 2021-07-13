@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls'
+    'polls',
+    'mozilla_django_oidc'
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,16 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+OIDC_RP_CLIENT_ID = os.environ['KEYCLOAK_CLIENT_ID']
+OIDC_RP_CLIENT_SECRET = os.environ['KEYCLOAK_CLIENT_SECRET']
+
+openid_prefix = '{}/realms/{}/protocol/openid-connect'.format(
+    os.environ['KEYCLOAK_URL'], os.environ['KEYCLOAK_REALM']
+)
+OIDC_OP_AUTHORIZATION_ENDPOINT = f'{openid_prefix}/auth'
+OIDC_OP_TOKEN_ENDPOINT = f'{openid_prefix}/token'
+OIDC_OP_USER_ENDPOINT = f'{openid_prefix}/userinfo'
+OIDC_OP_JWKS_ENDPOINT = f'{openid_prefix}/certs'
+OIDC_OP_LOGOUT_ENDPOINT= f'{openid_prefix}/logout'
