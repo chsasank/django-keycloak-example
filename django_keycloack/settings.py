@@ -71,7 +71,8 @@ TEMPLATES = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+    'auth.KeycloakOIDCAuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend'
 ]
 
 REST_FRAMEWORK = {
