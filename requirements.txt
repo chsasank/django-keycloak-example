@@ -1,0 +1,3 @@
+django
+mozilla-django-oidc
+django-rest-framework
