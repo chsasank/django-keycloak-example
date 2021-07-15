@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls'
+    'polls',
+    'qure_keycloak_auth'
 ]
+
+
+AUTHENTICATION_BACKENDS = ['qure_keycloak_auth.auth.AuthLibBackend']
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,7 +60,7 @@ ROOT_URLCONF = 'django_keycloack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +129,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AUTHLIB CLIENTS
+import os
+AUTHLIB_OAUTH_CLIENTS = {
+    'qure': {
+        'client_id': os.getenv('KEYCLOAK_CLIENT_ID'),
+        'client_secret': os.getenv('KEYCLOAK_CLIENT_SECRET'),
+    }
+}
