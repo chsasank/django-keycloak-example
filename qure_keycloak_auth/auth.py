@@ -2,12 +2,13 @@ from authlib.integrations.django_client import OAuth
 from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.models import Group, User
 from .models import Role
+from .app_settings import AUTH_CONF_URL
 
-CONF_URL = "https://accounts.qure.ai/auth/realms/users/.well-known/openid-configuration"
+
 oauth = OAuth()
 oauth.register(
     name="qure",
-    server_metadata_url=CONF_URL,
+    server_metadata_url=AUTH_CONF_URL,
     client_kwargs={"scope": "openid email profile"},
 )
 
@@ -21,15 +22,15 @@ class AuthLibBackend(BaseBackend):
             username=user_info["preferred_username"],
             first_name=user_info["given_name"],
             last_name=user_info["family_name"],
-            email=user_info["email"]
+            email=user_info["email"],
         )
         user.save()
 
-        for group_name in user_info['groups']:
+        for group_name in user_info["groups"]:
             group = Group.objects.get_or_create(name=group_name)[0]
             user.groups.add(group)
 
-        for role_name in user_info['roles']:
+        for role_name in user_info["roles"]:
             role = Role.objects.get_or_create(name=role_name)[0]
             user.roles.add(role)
 

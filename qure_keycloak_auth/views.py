@@ -1,7 +1,7 @@
-import json
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, logout, login
+
 from .auth import oauth
 
 
